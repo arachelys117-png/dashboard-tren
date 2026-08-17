@@ -3,32 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Descarga de Tren</title>
+<title>Dashboard Descarga Tren</title>
 
 <style>
+
 body{
-font-family:Arial,sans-serif;
 background:#f4f4f4;
+font-family:Arial,sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
 margin:0;
 }
 
 .card{
+width:95%;
+max-width:700px;
 background:white;
 padding:30px;
-border-radius:15px;
-box-shadow:0 0 15px rgba(0,0,0,.15);
-width:90%;
-max-width:500px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.15);
 text-align:center;
 }
 
+h1{
+margin-bottom:10px;
+}
+
+.avance{
+font-size:60px;
+font-weight:bold;
+color:#28a745;
+}
+
 .barra{
+height:35px;
 background:#ddd;
-height:30px;
 border-radius:30px;
 overflow:hidden;
 margin:20px 0;
@@ -37,14 +48,34 @@ margin:20px 0;
 .progreso{
 height:100%;
 background:#28a745;
-width:91%;
+width:0%;
+transition:1s;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:25px;
+}
+
+.item{
+background:#f8f8f8;
+padding:15px;
+border-radius:10px;
 }
 
 .valor{
-font-size:40px;
+font-size:28px;
 font-weight:bold;
-color:#28a745;
 }
+
+.actualizacion{
+margin-top:20px;
+color:#666;
+font-size:14px;
+}
+
 </style>
 </head>
 
@@ -54,19 +85,83 @@ color:#28a745;
 
 <h1>🚂 Descarga de Tren</h1>
 
-<h2>Tren Actual</h2>
+<h2 id="tren"></h2>
 
-<div class="valor">91.3%</div>
+<div class="avance" id="avance"></div>
 
 <div class="barra">
-<div class="progreso"></div>
+<div class="progreso" id="barra"></div>
 </div>
 
-<p>✅ Descargadas: 21</p>
-<p>⏳ Pendientes: 2</p>
-<p>📦 Totales: 23</p>
+<div class="grid">
+
+<div class="item">
+✅ Descargadas
+<div class="valor" id="descargadas"></div>
+</div>
+
+<div class="item">
+⏳ Pendientes
+<div class="valor" id="pendientes"></div>
+</div>
+
+<div class="item">
+📦 Totales
+<div class="valor" id="totales"></div>
+</div>
+
+<div class="item">
+⚖️ Ton Descargadas
+<div class="valor" id="tonDesc"></div>
+</div>
+
+<div class="item">
+⚖️ Ton Totales
+<div class="valor" id="tonTot"></div>
+</div>
+
+<div class="item">
+🏁 ETA
+<div class="valor" id="eta"></div>
+</div>
 
 </div>
+
+<div class="actualizacion">
+Última actualización:
+<span id="actualizacion"></span>
+</div>
+
+</div>
+
+<script>
+
+const datos = {
+tren:"26-BL-519",
+avance:91.3,
+descargadas:21,
+pendientes:2,
+totales:23,
+tonDesc:2142,
+tonTot:2346,
+eta:"11:30",
+actualizacion:"17/08/2026 10:55"
+};
+
+document.getElementById("tren").innerText=datos.tren;
+document.getElementById("avance").innerText=datos.avance.toFixed(1)+"%";
+document.getElementById("descargadas").innerText=datos.descargadas;
+document.getElementById("pendientes").innerText=datos.pendientes;
+document.getElementById("totales").innerText=datos.totales;
+document.getElementById("tonDesc").innerText=datos.tonDesc;
+document.getElementById("tonTot").innerText=datos.tonTot;
+document.getElementById("eta").innerText=datos.eta;
+document.getElementById("actualizacion").innerText=datos.actualizacion;
+
+document.getElementById("barra").style.width=
+datos.avance+"%";
+
+</script>
 
 </body>
 </html>
