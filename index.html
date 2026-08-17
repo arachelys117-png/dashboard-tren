@@ -136,17 +136,40 @@ font-size:14px;
 
 <script>
 
-const datos = {
-tren:"26-BL-519",
-avance:91.3,
-descargadas:21,
-pendientes:2,
-totales:23,
-tonDesc:2142,
-tonTot:2346,
-eta:"11:30",
-actualizacion:"17/08/2026 10:55"
-};
+fetch("datos.json")
+.then(response => response.json())
+.then(datos => {
+
+document.getElementById("tren").innerText=datos.tren;
+
+document.getElementById("avance").innerText=
+Number(datos.avance).toFixed(1)+"%";
+
+document.getElementById("descargadas").innerText=
+datos.descargadas;
+
+document.getElementById("pendientes").innerText=
+datos.pendientes;
+
+document.getElementById("totales").innerText=
+datos.totalTolvas;
+
+document.getElementById("tonDesc").innerText=
+datos.tonDesc;
+
+document.getElementById("tonTot").innerText=
+datos.tonTot;
+
+document.getElementById("eta").innerText=
+datos.eta;
+
+document.getElementById("actualizacion").innerText=
+datos.actualizacion;
+
+document.getElementById("barra").style.width =
+datos.avance + "%";
+
+});
 
 document.getElementById("tren").innerText=datos.tren;
 document.getElementById("avance").innerText=datos.avance.toFixed(1)+"%";
