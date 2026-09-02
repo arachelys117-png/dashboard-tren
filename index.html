@@ -136,22 +136,22 @@ font-size:14px;
 
 <script>
 
-fetch("datos.json")
+fetch("datos.json?v=" + Date.now())
 .then(response => response.json())
 .then(datos => {
 
-document.getElementById("tren").innerText=datos.tren;
+document.getElementById("tren").innerText = datos.tren;
 
 document.getElementById("avance").innerText =
-Number(datos.avance).toFixed(1)+"%";
+Number(datos.avance).toFixed(1) + "%";
 
-document.getElementById("descargadas").innerText=
+document.getElementById("descargadas").innerText =
 datos.descargadas;
 
-document.getElementById("pendientes").innerText=
+document.getElementById("pendientes").innerText =
 datos.pendientes;
 
-document.getElementById("totales").innerText=
+document.getElementById("totales").innerText =
 datos.totalTolvas;
 
 document.getElementById("tonDesc").innerText =
@@ -160,31 +160,33 @@ Number(datos.tonDesc).toFixed(1);
 document.getElementById("tonTot").innerText =
 Number(datos.tonTot).toFixed(1);
 
-document.getElementById("eta").innerText=
+document.getElementById("eta").innerText =
 datos.eta;
 
-document.getElementById("actualizacion").innerText=
+document.getElementById("actualizacion").innerText =
 datos.actualizacion;
 
 document.getElementById("barra").style.width =
 datos.avance + "%";
 
+const barra = document.getElementById("barra");
+
+if(datos.avance >= 90){
+    barra.style.backgroundColor="#28a745";
+}
+else if(datos.avance >= 70){
+    barra.style.backgroundColor="#ffc107";
+}
+else{
+    barra.style.backgroundColor="#dc3545";
+}
+
 });
 
-document.getElementById("tren").innerText=datos.tren;
-document.getElementById("avance").innerText=datos.avance.toFixed(1)+"%";
-document.getElementById("descargadas").innerText=datos.descargadas;
-document.getElementById("pendientes").innerText=datos.pendientes;
-document.getElementById("totales").innerText=datos.totales;
-document.getElementById("tonDesc").innerText=datos.tonDesc;
-document.getElementById("tonTot").innerText=datos.tonTot;
-document.getElementById("eta").innerText=datos.eta;
-document.getElementById("actualizacion").innerText=datos.actualizacion;
-
-document.getElementById("barra").style.width=
-datos.avance+"%";
-
-</script>
+setInterval(() => {
+    location.reload();
+}, 30000);
+</script> 
 
 </body>
 </html>
