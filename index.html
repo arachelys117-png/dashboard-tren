@@ -142,7 +142,7 @@ fetch("datos.json")
 
 document.getElementById("tren").innerText=datos.tren;
 
-document.getElementById("avance").innerText=
+document.getElementById("avance").innerText =
 Number(datos.avance).toFixed(1)+"%";
 
 document.getElementById("descargadas").innerText=
@@ -154,11 +154,11 @@ datos.pendientes;
 document.getElementById("totales").innerText=
 datos.totalTolvas;
 
-document.getElementById("tonDesc").innerText=
-datos.tonDesc;
+document.getElementById("tonDesc").innerText =
+Number(datos.tonDesc).toFixed(1);
 
-document.getElementById("tonTot").innerText=
-datos.tonTot;
+document.getElementById("tonTot").innerText =
+Number(datos.tonTot).toFixed(1);
 
 document.getElementById("eta").innerText=
 datos.eta;
